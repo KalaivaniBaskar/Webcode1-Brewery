@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brewery List v1.0</title> 
+    <title>Brewery List </title> 
      
     <link rel="stylesheet" href="style.css">
     
@@ -48,7 +48,7 @@
                             <form action="" id="search-form"> 
                                 
                                 <span id="span-filter">
-                                    <label for="filter">   Find   </label>  
+                                    <label for="filter">   Find by  </label>    
                                     <span id="filter-select"> 
                                         <select name="filter-value" id="filterby">
                                             <option value="name" >Brewery Name</option>
@@ -79,7 +79,7 @@
                             <form action="" id="filter-form"> 
                                 <span id=""> 
                                     <select name="" id="drop-type">
-                                        <option value="" selected><b>Available Types</b></option>
+                                        <option value="" selected><b>Tip: Available Types</b></option>
                                         <option value="" disabled >micro </option>
                                         <option value="" disabled="">nano</option>
                                         <option value="" disabled="">regional</option> 
@@ -134,7 +134,9 @@
                 <div>
                     <p id="showing"></p>
                 </div>       
-                
+                <div>
+                    <button onclick="resetList(this)" id="resetbutton">Clear filter</button>
+                </div>
                 <div class="button-hold">
                     <nav aria-label="pagination-size" class = "pagination" id="page-btn"> 
                     
