@@ -121,14 +121,14 @@ async function breweryAPI(){
     async function findbreweryAPI(apiBy,fil_value,search_term) {
             
         try {  
-            var fil_list = await fetchBreweryList(apiBy);   
+            list = await fetchBreweryList(apiBy);     
             var parent = document.querySelector('#card-parent') 
             parent.innerHTML = ""; 
             var res = document.querySelector('#result-term')
             res.value = ""; 
             var result = document.querySelector('.result') 
-            result.innerHTML = `<h4> ${fil_list.length} results found </h4>`
-            array_list = fil_list; 
+            result.innerHTML = `<h4> ${list.length} results found </h4>`
+            array_list = list;  
             paginationButtons();
             
         }
@@ -153,6 +153,7 @@ async function breweryAPI(){
             
             var search = document.querySelector('#search-term')
             var search_term = search.value; 
+            search_term = search_term.trim();
             search_term = search_term.toLowerCase();
             //console.log(search_term);
             var apiBy;
@@ -180,8 +181,9 @@ async function breweryAPI(){
         len =  array.length;
         startRow = 1;
         endRow = tableSize;
+        currPage = 1;
         maxPage = Math.ceil(len/tableSize);
-      //  console.log("in pagination",maxPage);
+      //console.log("in pagination",maxPage,startRow,endRow,len);
         createButtons();  
     }
 
@@ -275,6 +277,7 @@ async function breweryAPI(){
             //console.log(fil_value); // name type city state
             var search = document.querySelector('#result-term')
             var search_term = search.value; 
+            search_term.trim();
             search_term = search_term.split(" ").join(" ")
             search_term = search_term.toLowerCase(); 
             try{
@@ -296,6 +299,7 @@ async function breweryAPI(){
                   result.innerHTML = `<h4> ${resList.length} results found </h4>`
                   array_list = resList ; 
                  // console.log(list.length,resList.length)
+                 //console.log("calling pagination from filter",startRow,endRow);
                   paginationButtons(); 
                   
               }
@@ -319,7 +323,14 @@ async function breweryAPI(){
 
            
     }
-
+    function resetList(e){
+        array_list = list;
+        var search = document.querySelector('#result-term')
+            search.value = "";  
+        var result = document.querySelector('.result') 
+        result.innerHTML = `<h4> ${array_list.length} results found </h4>`
+        paginationButtons();
+    }
     // function resetResult(resetEvent){ 
     //     console.log("reset clickcked ",resetEvent)
     //     var search = document.querySelector('#result-term')
